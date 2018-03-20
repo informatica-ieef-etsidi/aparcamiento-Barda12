@@ -1,0 +1,106 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void main() {
+	system("color 5F");
+	char opcion,tipo;
+	int p1c, m1, p2m, m2, buscarm;
+	char leave;
+	int salir=1;
+	p1c = 0;
+	p2m = 0;
+	while (salir) {
+		printf("Seleccione una de las siguientes opciones:\n R - Reservar plaza.\n A - Abandonar plaza.\n E - Estado del aparcamiento.\n B - Buscar matricula.\n S - Salir del programa.\n");
+		scanf("%c", &opcion);
+		switch (opcion) {
+		case 'R':
+		case 'r':
+			printf("Su vehiculo es un coche(c) o una moto(m)?:\n");
+			scanf("%c", &tipo);
+			switch (tipo) {
+				case'c':
+					if (p1c == 0) {
+						p1c = 1;
+						printf("Por favor introduzca su matricula:\t");
+						scanf("%d", &m1);
+						printf("Ha realizado correctamente su reserva.\n");
+					}
+					else {
+						printf("Lo sentimos, el parking esta al completo.\n");
+					}
+				break;
+				case 'm':
+					if (p2m == 0) {
+						p2m = 1;
+						printf("Por favor introduzca su matricula:\t");
+						scanf("%d", &m2);
+						printf("Ha realizado correctamente su reserva.\n");
+					}
+					else {
+						printf("Lo sentimos, el parking esta al completo.\n");
+					}
+					break;
+					
+			}
+			break;
+		case 'A':
+		case 'a':
+			printf("Por favor, introduzca su plaza:\t");
+			scanf("%c", &leave);
+			switch (leave) {
+			case'1':
+				p1c = 0;
+				printf("Ha abandonado la plaza 1 correctamente.\n");
+				break;
+			case'2':
+				p2m = 0;
+				printf("Ha abandonado la plaza 2 correctamente.\n");
+				break;
+			}
+			break;
+		case 'E':
+		case 'e':
+			if (p1c == 0 && p2m == 0) {
+				printf("El parking esta vacio\n");
+			}
+			if (p1c == 1) {
+				printf("La plaza 1 esta ocupada, matricula: %d\n", m1);
+			}
+			if (p2m == 1) {
+				printf("La plaza 2 esta ocupada, matricula: %d\n", m2);
+			}
+			if (p1c == 0) {
+				printf("La plaza 1 esta libre.\n", m1);
+			}
+			if (p2m == 0) {
+				printf("La plaza 2 esta libre.\n", m1);
+			}
+			break;
+		case 'B':
+		case'b':
+			printf("Introduzca la matricula:\n");
+			scanf("%d",buscarm);
+			if (buscarm == m1) {
+				printf("El vehiculo esta en el parking\n");
+			}
+			else if (buscarm == m2) {
+				printf("La matricula esta en el parking.\n");
+
+			}
+			else {
+				printf("La matricula no esta en el parking.\n");
+			}
+			break;
+
+		case 'S':
+		case's':
+			salir = 0;
+			break;
+		}
+		
+	}
+
+	system("pause");
+}
